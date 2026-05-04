@@ -1,4 +1,4 @@
-﻿package com.tamjid.course;
+package com.tamjid.course;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

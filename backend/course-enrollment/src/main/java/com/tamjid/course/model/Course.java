@@ -1,4 +1,4 @@
-﻿package com.tamjid.course.model;
+package com.tamjid.course.model;
 
 public class Course {
     private Long id;

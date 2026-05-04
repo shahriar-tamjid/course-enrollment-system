@@ -1,4 +1,4 @@
-﻿package com.tamjid.course.service;
+package com.tamjid.course.service;
 
 public interface EnrollmentService {
 }

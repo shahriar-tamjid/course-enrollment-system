@@ -1,4 +1,4 @@
-Write-Host "🚀 Creating Project Structure..." -ForegroundColor Cyan
+Write-Host "Creating Project Structure..." -ForegroundColor Cyan
 
 # =========================
 # Helper Function
@@ -39,4 +39,4 @@ Ensure-Directory "frontend/src/app/features/course"
 Ensure-Directory "frontend/src/app/features/enrollment"
 Ensure-Directory "frontend/src/app/features/auth"
 
-Write-Host "✅ Project structure created successfully!" -ForegroundColor Green
+Write-Host "Project structure created successfully!" -ForegroundColor Green

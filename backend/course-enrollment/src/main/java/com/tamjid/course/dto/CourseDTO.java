@@ -1,4 +1,4 @@
-﻿package com.tamjid.course.dto;
+package com.tamjid.course.dto;
 
 public class CourseDTO {
 }
