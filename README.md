@@ -200,6 +200,251 @@ ng serve
 
 ---
 
+## 🚀 Backend Implementation Progress
+
+The backend currently includes an initial implementation of Course CRUD APIs using Spring Boot and in-memory data storage.
+
+The purpose of this phase is to understand:
+
+* Spring Boot MVC architecture
+* REST API development
+* Dependency Injection
+* Request/Response lifecycle
+* Service layer separation
+* JSON serialization/deserialization
+
+---
+
+## 📚 Implemented Course APIs
+
+| Method | Endpoint            | Purpose                |
+| ------ | ------------------- | ---------------------- |
+| GET    | `/api/courses`      | Get all courses        |
+| GET    | `/api/courses/{id}` | Get course by ID       |
+| POST   | `/api/courses`      | Create new course      |
+| PUT    | `/api/courses/{id}` | Update existing course |
+| DELETE | `/api/courses/{id}` | Delete course          |
+
+---
+
+## 🧠 Backend Request Flow (Spring MVC)
+
+Understanding this flow is extremely important:
+
+```text
+HTTP Request
+    ↓
+Controller
+    ↓
+Service
+    ↓
+Data Source / Repository
+    ↓
+Response returned as JSON
+```
+
+Example:
+
+```text
+GET /api/courses
+    ↓
+CourseController
+    ↓
+CourseServiceImpl
+    ↓
+Returns List<Course>
+    ↓
+Spring Boot converts Java Object → JSON
+```
+
+---
+
+## 🧩 Implemented Backend Components
+
+### 📄 Course Model
+
+Represents the course entity and data structure.
+
+Fields:
+
+* id
+* title
+* description
+* price
+
+Purpose:
+
+* Stores application data
+* Used for request/response mapping
+* Converted automatically to JSON by Spring Boot
+
+---
+
+### 📄 CourseService Interface
+
+Defines the business operations:
+
+* getAllCourses()
+* getCourseById()
+* createCourse()
+* updateCourse()
+* deleteCourse()
+
+Purpose:
+
+* Separates business contract from implementation
+* Improves scalability and maintainability
+
+---
+
+### 📄 CourseServiceImpl
+
+Implements business logic using in-memory data storage.
+
+Current storage:
+
+```java
+List<Course> courses = new ArrayList<>();
+```
+
+Purpose:
+
+* Simulates database behavior
+* Helps understand architecture before integrating Oracle DB
+
+---
+
+### 📄 CourseController
+
+Handles HTTP requests using REST endpoints.
+
+Important annotations used:
+
+| Annotation        | Purpose                            |
+| ----------------- | ---------------------------------- |
+| `@RestController` | Marks class as REST API controller |
+| `@RequestMapping` | Defines base API route             |
+| `@GetMapping`     | Handles GET requests               |
+| `@PostMapping`    | Handles POST requests              |
+| `@PutMapping`     | Handles PUT requests               |
+| `@DeleteMapping`  | Handles DELETE requests            |
+| `@RequestBody`    | Converts JSON → Java Object        |
+| `@PathVariable`   | Extracts URL parameter             |
+
+---
+
+## 🧠 Dependency Injection Concept
+
+Spring Boot automatically creates and manages objects called Beans.
+
+Example:
+
+```java
+private final CourseService courseService;
+```
+
+Spring injects the implementation automatically into the controller.
+
+This concept is called:
+
+### Dependency Injection (DI)
+
+Benefits:
+
+* Loose coupling
+* Better scalability
+* Easier testing
+* Cleaner architecture
+
+---
+
+## 🔄 JSON Mapping
+
+Spring Boot automatically converts:
+
+### Java Object → JSON
+
+Example:
+
+```java
+Course
+```
+
+becomes:
+
+```json
+{
+  "id": 1,
+  "title": "Spring Boot Masterclass",
+  "description": "Learn backend development",
+  "price": 5000
+}
+```
+
+This conversion is handled internally by the Jackson library.
+
+---
+
+## 🧪 API Testing
+
+Current APIs are tested using:
+
+* Postman
+* Browser
+* REST client tools
+
+Example test URL:
+
+```text
+http://localhost:8080/api/courses
+```
+
+---
+
+## 🧠 Key Concepts Learned So Far
+
+### Spring Boot
+
+* MVC Architecture
+* REST APIs
+* Dependency Injection
+* Layered Architecture
+* Service Layer Pattern
+* JSON Serialization
+* Request Mapping
+
+### Java
+
+* Classes & Objects
+* Constructors
+* Getters & Setters
+* Interfaces
+* Method Overriding
+* Collections (`List`, `ArrayList`)
+
+---
+
+## 📌 Current Limitation
+
+Currently data is stored in-memory:
+
+```java
+List<Course>
+```
+
+This means:
+
+* Data resets after application restart
+* No persistent database yet
+
+Future improvement:
+
+* Integrate Oracle Database using Spring Data JPA
+
+---
+
+---
+
 ## 💡 Author
 
 Sharif MD Shahriar Tamjid
