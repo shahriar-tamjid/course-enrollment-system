@@ -1,0 +1,84 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="d-flex align-items-center mb-4">
+        <button class="btn btn-outline-secondary me-3" (click)="goBack()">
+          <i class="bi bi-arrow-left"></i>
+        </button>
+        <h2 class="fw-bold text-primary mb-0">
+          {{ isEditMode ? 'Edit Course' : 'Add Course' }}
+        </h2>
+      </div>
+
+      <div *ngIf="loading" class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="mt-2 text-muted">Loading course data...</p>
+      </div>
+
+      <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ errorMessage }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+
+      <div class="card shadow-sm border-0" *ngIf="!loading">
+        <div class="card-body p-4">
+          <form (ngSubmit)="onSubmit()" #courseForm="ngForm">
+            <div class="mb-3">
+              <label for="title" class="form-label fw-semibold">Title</label>
+              <input
+                type="text"
+                class="form-control"
+                id="title"
+                name="title"
+                [(ngModel)]="course.title"
+                placeholder="Enter course title"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="description" class="form-label fw-semibold">Description</label>
+              <textarea
+                class="form-control"
+                id="description"
+                name="description"
+                rows="4"
+                [(ngModel)]="course.description"
+                placeholder="Enter course description"
+                required
+              ></textarea>
+            </div>
+
+            <div class="mb-4">
+              <label for="price" class="form-label fw-semibold">Price (৳)</label>
+              <input
+                type="number"
+                class="form-control"
+                id="price"
+                name="price"
+                [(ngModel)]="course.price"
+                placeholder="Enter course price"
+                min="1"
+                required
+              />
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button type="button" class="btn btn-outline-secondary" (click)="goBack()">Cancel</button>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="submitting"
+              >
+                <span *ngIf="submitting" class="spinner-border spinner-border-sm me-1" role="status"></span>
+                {{ isEditMode ? 'Update Course' : 'Create Course' }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
